@@ -1,11 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Home from "./components/Home";
+import JobsListPage from "./components/JobsListPage";
+import JobDetailPage from "./components/JobDetailPage";
 
 export default () => {
 	return (
 		<div>
-			<Route exact path="/" component={Home} />
+			<Route exact path="/" component={JobsListPage} />
+			<Route path="/jobs" component={JobDetailPage} />
 		</div>
 	);
 };
