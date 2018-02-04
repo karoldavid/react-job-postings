@@ -11,7 +11,7 @@ export const fetchJobs = () => {
 		dispatch({
 			type: FETCH_JOBS
 		});
-		fetch("data/jobs.json")
+		fetch("http://localhost:3333/data/jobs.json")
 			.then(response => response.json())
 			.then(data => {
 				dispatch({

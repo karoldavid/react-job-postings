@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes";
-import { MuiThemeProvider } from "material-ui";
+import { AppBar, MuiThemeProvider } from "material-ui";
 
 ReactDOM.hydrate(
 	<Provider store={store}>

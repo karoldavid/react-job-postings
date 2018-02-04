@@ -73,13 +73,13 @@ module.exports = require("react");
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-redux");
+module.exports = require("react-router-dom");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-dom");
+module.exports = require("react-redux");
 
 /***/ }),
 /* 3 */
@@ -197,9 +197,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(11);
 
-var _reactRedux = __webpack_require__(1);
+var _reactRedux = __webpack_require__(2);
 
-var _reactRouterDom = __webpack_require__(2);
+var _reactRouterDom = __webpack_require__(1);
 
 var _Routes = __webpack_require__(12);
 
@@ -242,7 +242,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(2);
+var _reactRouterDom = __webpack_require__(1);
 
 var _JobsListPage = __webpack_require__(13);
 
@@ -280,9 +280,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(1);
+var _reactRedux = __webpack_require__(2);
 
-var _reactRouterDom = __webpack_require__(2);
+var _reactRouterDom = __webpack_require__(1);
 
 var _actions = __webpack_require__(3);
 
@@ -411,7 +411,7 @@ var fetchJobs = exports.fetchJobs = function fetchJobs() {
 		dispatch({
 			type: _types.FETCH_JOBS
 		});
-		(0, _isomorphicFetch2.default)("data/jobs.json").then(function (response) {
+		(0, _isomorphicFetch2.default)("http://localhost:3333/data/jobs.json").then(function (response) {
 			return response.json();
 		}).then(function (data) {
 			dispatch({
@@ -460,9 +460,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(1);
+var _reactRedux = __webpack_require__(2);
 
-var _reactRouterDom = __webpack_require__(2);
+var _reactRouterDom = __webpack_require__(1);
 
 var _materialUi = __webpack_require__(5);
 
