@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch'
 import { FETCH_JOBS, FETCH_JOBS_SUCCESS } from "./types";
 
 export const fetchJobs = () => {

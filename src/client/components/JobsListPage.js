@@ -1,26 +1,49 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 import { Paper, List, ListItem, Divider } from "material-ui";
 
 class JobsListPage extends Component {
-	componentDidMount() {
+	componentWillMount() {
 		this.props.fetchJobs();
 	}
 
+	renderItems = posts => {
+		return posts.map(post => {
+			const { jobkey, jobtitle } = post;
+			return (
+				<div key={jobkey}>
+					<ListItem onClick={() => console.log(post)}>
+						{`${jobtitle} `}
+					</ListItem>
+
+					<Divider />
+				</div>
+			);
+		});
+	};
+
 	render() {
-		const { loading, jobs } = this.props;
+		const { loading, posts } = this.props;
 		return (
-			<p>hello</p>
+			<div>
+				{loading ? (
+					<p>loading...</p>
+				) : (
+					<Paper>
+						<List>{this.renderItems(posts)}</List>
+					</Paper>
+				)}
+			</div>
 		);
 	}
 }
 
-const mapStateToProps = ({ jobs, loading }) => {
-	console.log(jobs)
+const mapStateToProps = ({ jobs: { posts, loading } }) => {
 	return {
-		jobs,
-		loading
+		loading,
+		posts
 	};
 };
-export default connect(mapStateToProps, actions)(JobsListPage);
+export default withRouter(connect(mapStateToProps, actions)(JobsListPage));
