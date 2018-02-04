@@ -1,8 +1,13 @@
-import { FETCH_JOBS, FETCH_JOBS_SUCCESS, SELECT_JOB, DESELECT_JOB } from "../actions/types";
+import {
+	FETCH_JOBS,
+	FETCH_JOBS_SUCCESS,
+	SELECT_JOB,
+	DESELECT_JOB
+} from "../actions/types";
 
 const INITIAL_STATE = {
 	posts: [],
-	loading: true, // should be false, temporary workaround
+	loading: true, // should be initially false, temporary workaround
 	selected: null
 };
 

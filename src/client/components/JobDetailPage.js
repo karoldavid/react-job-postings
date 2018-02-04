@@ -70,7 +70,6 @@ const cardStyle = {
 	transitionDuration: "0.3s"
 };
 
-
 const mapStateToProps = ({ jobs: { selected } }) => {
 	return {
 		post: selected
