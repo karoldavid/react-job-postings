@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,13 +73,13 @@ module.exports = require("react");
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-dom");
+module.exports = require("react-redux");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("redux");
+module.exports = require("react-router-dom");
 
 /***/ }),
 /* 3 */
@@ -88,17 +88,66 @@ module.exports = require("redux");
 "use strict";
 
 
-__webpack_require__(4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var _express = __webpack_require__(5);
+var _JobActions = __webpack_require__(14);
+
+Object.keys(_JobActions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _JobActions[key];
+    }
+  });
+});
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var FETCH_JOBS = exports.FETCH_JOBS = "FETCH_JOBS";
+var FETCH_JOBS_SUCCESS = exports.FETCH_JOBS_SUCCESS = "FETCH_JOBS_SUCCESS";
+var SELECT_JOB = exports.SELECT_JOB = "SELECT_JOB";
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui");
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux");
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(8);
+
+var _express = __webpack_require__(9);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _renderer = __webpack_require__(6);
+var _renderer = __webpack_require__(10);
 
 var _renderer2 = _interopRequireDefault(_renderer);
 
-var _createStore = __webpack_require__(12);
+var _createStore = __webpack_require__(17);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
@@ -119,19 +168,19 @@ app.listen(3333, function () {
 });
 
 /***/ }),
-/* 4 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("babel-polyfill");
 
 /***/ }),
-/* 5 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 6 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145,13 +194,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(7);
+var _server = __webpack_require__(11);
 
-var _reactRedux = __webpack_require__(8);
+var _reactRedux = __webpack_require__(1);
 
-var _reactRouterDom = __webpack_require__(1);
+var _reactRouterDom = __webpack_require__(2);
 
-var _Routes = __webpack_require__(9);
+var _Routes = __webpack_require__(12);
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -172,19 +221,13 @@ exports.default = function (req, store) {
 };
 
 /***/ }),
-/* 7 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-redux");
-
-/***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -198,13 +241,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(1);
+var _reactRouterDom = __webpack_require__(2);
 
-var _JobsListPage = __webpack_require__(10);
+var _JobsListPage = __webpack_require__(13);
 
 var _JobsListPage2 = _interopRequireDefault(_JobsListPage);
 
-var _JobDetailPage = __webpack_require__(11);
+var _JobDetailPage = __webpack_require__(16);
 
 var _JobDetailPage2 = _interopRequireDefault(_JobDetailPage);
 
@@ -220,7 +263,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -236,15 +279,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(8);
+var _reactRedux = __webpack_require__(1);
 
-var _reactRouterDom = __webpack_require__(1);
+var _reactRouterDom = __webpack_require__(2);
 
-var _actions = __webpack_require__(17);
+var _actions = __webpack_require__(3);
 
 var actions = _interopRequireWildcard(_actions);
 
-var _materialUi = __webpack_require__(20);
+var _materialUi = __webpack_require__(5);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -343,7 +386,58 @@ var mapStateToProps = function mapStateToProps(_ref2) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, actions)(JobsListPage));
 
 /***/ }),
-/* 11 */
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.selectJob = exports.fetchJobs = undefined;
+
+var _isomorphicFetch = __webpack_require__(15);
+
+var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+
+var _types = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var fetchJobs = exports.fetchJobs = function fetchJobs() {
+	return function (dispatch) {
+		dispatch({
+			type: _types.FETCH_JOBS
+		});
+		(0, _isomorphicFetch2.default)("data/jobs.json").then(function (response) {
+			return response.json();
+		}).then(function (data) {
+			dispatch({
+				type: _types.FETCH_JOBS_SUCCESS,
+				payload: data
+			});
+		}).catch(function (err) {
+			return console.log(err);
+		});
+	};
+};
+
+var selectJob = exports.selectJob = function selectJob(job) {
+	return {
+		type: _types.SELECT_JOB,
+		payload: job
+	};
+};
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-fetch");
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -359,7 +453,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(8);
+var _reactRedux = __webpack_require__(1);
+
+var _materialUi = __webpack_require__(5);
+
+var _actions = __webpack_require__(3);
+
+var actions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -381,12 +483,57 @@ var JobDetailPage = function (_Component) {
 	_createClass(JobDetailPage, [{
 		key: "render",
 		value: function render() {
-			var jobtitle = this.props.selected.jobtitle;
+			var _props$post = this.props.post,
+			    company = _props$post.company,
+			    formattedLocation = _props$post.formattedLocation,
+			    formattedRelativeTime = _props$post.formattedRelativeTime,
+			    jobtitle = _props$post.jobtitle,
+			    snippet = _props$post.snippet,
+			    url = _props$post.url;
 
 			return _react2.default.createElement(
 				"div",
-				null,
-				jobtitle
+				{ style: { marginLeft: "auto", marginRight: "auto" } },
+				_react2.default.createElement(
+					_materialUi.Card,
+					{ style: cardStyle },
+					_react2.default.createElement(_materialUi.CardHeader, {
+						title: "Job Detail Page",
+						subtitle: "Published " + formattedRelativeTime
+					}),
+					_react2.default.createElement(
+						_materialUi.CardMedia,
+						{
+							overlay: _react2.default.createElement(_materialUi.CardTitle, { title: jobtitle + " (" + company + ")" })
+						},
+						_react2.default.createElement("img", {
+							src: "https://lorempixel.com/800/400/technics",
+							style: {}
+						})
+					),
+					_react2.default.createElement(
+						_materialUi.CardText,
+						null,
+						"Description: " + snippet.replace(/<b>/g, "").replace(/<\/b>/g, "")
+					),
+					_react2.default.createElement(
+						_materialUi.CardText,
+						null,
+						"Location: " + formattedLocation
+					),
+					_react2.default.createElement(
+						_materialUi.CardText,
+						null,
+						"To find out more, click",
+						" ",
+						_react2.default.createElement(
+							"a",
+							{ href: url, target: "_blank" },
+							"here"
+						),
+						"."
+					)
+				)
 			);
 		}
 	}]);
@@ -394,19 +541,25 @@ var JobDetailPage = function (_Component) {
 	return JobDetailPage;
 }(_react.Component);
 
+var cardStyle = {
+	width: "50vw",
+	transitionDuration: "0.3s",
+	color: "blue"
+};
+
 var mapStateToProps = function mapStateToProps(_ref) {
 	var selected = _ref.jobs.selected;
 
 	console.log(selected);
 	return {
-		selected: selected
+		post: selected
 	};
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(JobDetailPage);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, actions)(JobDetailPage);
 
 /***/ }),
-/* 12 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -416,13 +569,13 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _redux = __webpack_require__(2);
+var _redux = __webpack_require__(6);
 
-var _reduxThunk = __webpack_require__(13);
+var _reduxThunk = __webpack_require__(18);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _reducers = __webpack_require__(14);
+var _reducers = __webpack_require__(19);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -434,13 +587,13 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 13 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 14 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -450,9 +603,9 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _redux = __webpack_require__(2);
+var _redux = __webpack_require__(6);
 
-var _JobsReducer = __webpack_require__(15);
+var _JobsReducer = __webpack_require__(20);
 
 var _JobsReducer2 = _interopRequireDefault(_JobsReducer);
 
@@ -463,7 +616,7 @@ exports.default = (0, _redux.combineReducers)({
 });
 
 /***/ }),
-/* 15 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -495,107 +648,13 @@ exports.default = function () {
 	}
 };
 
-var _types = __webpack_require__(16);
+var _types = __webpack_require__(4);
 
 var INITIAL_STATE = {
 	posts: [],
 	loading: true, // should be false, temporary workaround
 	selected: null
 };
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var FETCH_JOBS = exports.FETCH_JOBS = "FETCH_JOBS";
-var FETCH_JOBS_SUCCESS = exports.FETCH_JOBS_SUCCESS = "FETCH_JOBS_SUCCESS";
-var SELECT_JOB = exports.SELECT_JOB = "SELECT_JOB";
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _JobActions = __webpack_require__(18);
-
-Object.keys(_JobActions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _JobActions[key];
-    }
-  });
-});
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.selectJob = exports.fetchJobs = undefined;
-
-var _isomorphicFetch = __webpack_require__(19);
-
-var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
-
-var _types = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var fetchJobs = exports.fetchJobs = function fetchJobs() {
-	return function (dispatch) {
-		dispatch({
-			type: _types.FETCH_JOBS
-		});
-		(0, _isomorphicFetch2.default)("data/jobs.json").then(function (response) {
-			return response.json();
-		}).then(function (data) {
-			dispatch({
-				type: _types.FETCH_JOBS_SUCCESS,
-				payload: data
-			});
-		}).catch(function (err) {
-			return console.log(err);
-		});
-	};
-};
-
-var selectJob = exports.selectJob = function selectJob(job) {
-	return {
-		type: _types.SELECT_JOB,
-		payload: job
-	};
-};
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-module.exports = require("isomorphic-fetch");
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-module.exports = require("material-ui");
 
 /***/ })
 /******/ ]);
