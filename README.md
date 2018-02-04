@@ -6,11 +6,11 @@ This is a​ simple mock up ​of a server rendered React web app which displays
 
 There are two pages:
 
-1. The Jobs List Page Displays a list of available jobs.
+1. The Jobs List Page displays a list of available jobs.
 
 ![Image of Jobs List Page](static/img/jobs-list-page.jpg)
 
-2. The Job Detail Page Displays all the information about an individual job.
+2. The Job Detail Page displays all the information about an individual job.
 
 ![Image of Job Detail Page](static/img/job-detail-page.jpg)
 
