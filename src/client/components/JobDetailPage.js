@@ -7,7 +7,8 @@ import {
 	CardMedia,
 	CardText,
 	CardTitle,
-	FlatButton
+	FlatButton,
+	RaisedButton
 } from "material-ui";
 import * as actions from "../actions";
 
@@ -52,12 +53,12 @@ class JobDetailPage extends Component {
 							.replace(/<\/b>/g, "")}`}
 					</CardText>
 					<CardText>{`Location: ${formattedLocation}`}</CardText>
-					<CardText>
-						To find out more, click{" "}
-						<a href={url} target="_blank">
-							here
-						</a>.
-					</CardText>
+					<RaisedButton
+						style={{ float: "right" }}
+						onClick={() => window.open(url)}
+						primary
+						label="Apply Now"
+					/>
 				</Card>
 			</div>
 		);
@@ -66,12 +67,11 @@ class JobDetailPage extends Component {
 
 const cardStyle = {
 	width: "50vw",
-	transitionDuration: "0.3s",
-	color: "blue"
+	transitionDuration: "0.3s"
 };
 
+
 const mapStateToProps = ({ jobs: { selected } }) => {
-	console.log(selected);
 	return {
 		post: selected
 	};

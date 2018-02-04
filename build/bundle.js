@@ -543,18 +543,14 @@ var JobDetailPage = function (_Component) {
 						null,
 						"Location: " + formattedLocation
 					),
-					_react2.default.createElement(
-						_materialUi.CardText,
-						null,
-						"To find out more, click",
-						" ",
-						_react2.default.createElement(
-							"a",
-							{ href: url, target: "_blank" },
-							"here"
-						),
-						"."
-					)
+					_react2.default.createElement(_materialUi.RaisedButton, {
+						style: { float: "right" },
+						onClick: function onClick() {
+							return window.open(url);
+						},
+						primary: true,
+						label: "Apply Now"
+					})
 				)
 			);
 		}
@@ -565,14 +561,12 @@ var JobDetailPage = function (_Component) {
 
 var cardStyle = {
 	width: "50vw",
-	transitionDuration: "0.3s",
-	color: "blue"
+	transitionDuration: "0.3s"
 };
 
 var mapStateToProps = function mapStateToProps(_ref) {
 	var selected = _ref.jobs.selected;
 
-	console.log(selected);
 	return {
 		post: selected
 	};
