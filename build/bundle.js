@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,7 +79,7 @@ module.exports = require("react-router-dom");
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("redux");
+module.exports = require("react-redux");
 
 /***/ }),
 /* 3 */
@@ -88,15 +88,33 @@ module.exports = require("redux");
 "use strict";
 
 
-var _express = __webpack_require__(4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var FETCH_JOBS = exports.FETCH_JOBS = "FETCH_JOBS";
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux");
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _express = __webpack_require__(6);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _renderer = __webpack_require__(5);
+var _renderer = __webpack_require__(7);
 
 var _renderer2 = _interopRequireDefault(_renderer);
 
-var _createStore = __webpack_require__(11);
+var _createStore = __webpack_require__(14);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
@@ -105,6 +123,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _express2.default)();
 
 app.use(_express2.default.static("public"));
+app.use(_express2.default.static('static'));
 
 app.get("*", function (req, res) {
 	var store = (0, _createStore2.default)();
@@ -116,13 +135,13 @@ app.listen(3333, function () {
 });
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -136,13 +155,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(6);
+var _server = __webpack_require__(8);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(2);
 
 var _reactRouterDom = __webpack_require__(1);
 
-var _Routes = __webpack_require__(7);
+var _Routes = __webpack_require__(9);
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -163,13 +182,13 @@ exports.default = function (req, store) {
 };
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -185,11 +204,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(1);
 
-var _JobsListPage = __webpack_require__(8);
+var _JobsListPage = __webpack_require__(10);
 
 var _JobsListPage2 = _interopRequireDefault(_JobsListPage);
 
-var _JobDetailPage = __webpack_require__(10);
+var _JobDetailPage = __webpack_require__(13);
 
 var _JobDetailPage2 = _interopRequireDefault(_JobDetailPage);
 
@@ -205,7 +224,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -223,9 +242,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(1);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(2);
 
-var _actions = __webpack_require__(16);
+var _actions = __webpack_require__(11);
 
 var actions = _interopRequireWildcard(_actions);
 
@@ -283,13 +302,59 @@ var mapStateToProps = function mapStateToProps(_ref) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, actions)(JobsListPage));
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports) {
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("react-redux");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _JobActions = __webpack_require__(12);
+
+Object.keys(_JobActions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _JobActions[key];
+    }
+  });
+});
 
 /***/ }),
-/* 10 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.fetchJobs = undefined;
+
+var _types = __webpack_require__(3);
+
+var fetchJobs = exports.fetchJobs = function fetchJobs() {
+	return function (dispatch) {
+		fetch("data/jobs.json").then(function (response) {
+			return response.json();
+		}).then(function (data) {
+			dispatch({
+				type: _types.FETCH_JOBS,
+				payload: data
+			});
+		}).catch(function (err) {
+			return console.log(err);
+		});
+	};
+};
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -316,7 +381,7 @@ var JobDetailPage = function JobDetailPage() {
 exports.default = JobDetailPage;
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -326,13 +391,13 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _redux = __webpack_require__(2);
+var _redux = __webpack_require__(4);
 
-var _reduxThunk = __webpack_require__(12);
+var _reduxThunk = __webpack_require__(15);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _reducers = __webpack_require__(13);
+var _reducers = __webpack_require__(16);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -344,76 +409,10 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _redux = __webpack_require__(2);
-
-var _JobsReducer = __webpack_require__(14);
-
-var _JobsReducer2 = _interopRequireDefault(_JobsReducer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = (0, _redux.combineReducers)({
-	jobs: _JobsReducer2.default
-});
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-exports.default = function () {
-	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
-	var action = arguments[1];
-
-	switch (action.type) {
-		case _types.FETCH_JOBS:
-			console.log(action.type);
-			return state;
-		default:
-			return state;
-	}
-};
-
-var _types = __webpack_require__(15);
-
-var INITIAL_STATE = {
-	posts: [],
-	loading: false
-};
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var FETCH_JOBS = exports.FETCH_JOBS = "FETCH_JOBS";
 
 /***/ }),
 /* 16 */
@@ -423,19 +422,19 @@ var FETCH_JOBS = exports.FETCH_JOBS = "FETCH_JOBS";
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
-var _JobActions = __webpack_require__(17);
+var _redux = __webpack_require__(4);
 
-Object.keys(_JobActions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _JobActions[key];
-    }
-  });
+var _JobsReducer = __webpack_require__(17);
+
+var _JobsReducer2 = _interopRequireDefault(_JobsReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+	jobs: _JobsReducer2.default
 });
 
 /***/ }),
@@ -448,14 +447,26 @@ Object.keys(_JobActions).forEach(function (key) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.fetchJobs = undefined;
 
-var _types = __webpack_require__(15);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var fetchJobs = exports.fetchJobs = function fetchJobs() {
-	return {
-		type: _types.FETCH_JOBS
-	};
+exports.default = function () {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+	var action = arguments[1];
+
+	switch (action.type) {
+		case _types.FETCH_JOBS:
+			return _extends({}, state, { posts: action.payload });
+		default:
+			return state;
+	}
+};
+
+var _types = __webpack_require__(3);
+
+var INITIAL_STATE = {
+	posts: [],
+	loading: false
 };
 
 /***/ })

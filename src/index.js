@@ -5,6 +5,7 @@ import createStore from "./helpers/createStore";
 const app = express();
 
 app.use(express.static("public"));
+app.use(express.static('static'))
 
 app.get("*", (req, res) => {
 	const store = createStore();

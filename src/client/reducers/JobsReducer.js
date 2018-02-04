@@ -8,8 +8,7 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case FETCH_JOBS:
-			console.log(action.type);
-			return state;
+			return { ...state, posts: action.payload };
 		default:
 			return state;
 	}
