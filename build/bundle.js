@@ -117,6 +117,7 @@ Object.defineProperty(exports, "__esModule", {
 var FETCH_JOBS = exports.FETCH_JOBS = "FETCH_JOBS";
 var FETCH_JOBS_SUCCESS = exports.FETCH_JOBS_SUCCESS = "FETCH_JOBS_SUCCESS";
 var SELECT_JOB = exports.SELECT_JOB = "SELECT_JOB";
+var DESELECT_JOB = exports.DESELECT_JOB = "DESELECT_JOB";
 
 /***/ }),
 /* 5 */
@@ -395,7 +396,7 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapSt
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.selectJob = exports.fetchJobs = undefined;
+exports.deselectJob = exports.selectJob = exports.fetchJobs = undefined;
 
 var _isomorphicFetch = __webpack_require__(15);
 
@@ -427,6 +428,12 @@ var selectJob = exports.selectJob = function selectJob(job) {
 	return {
 		type: _types.SELECT_JOB,
 		payload: job
+	};
+};
+
+var deselectJob = exports.deselectJob = function deselectJob() {
+	return {
+		type: _types.DESELECT_JOB
 	};
 };
 
@@ -657,6 +664,10 @@ exports.default = function () {
 		case _types.SELECT_JOB:
 			return _extends({}, state, {
 				selected: action.payload
+			});
+		case _types.DESELECT_JOB:
+			return _extends({}, state, {
+				selected: null
 			});
 		default:
 			return state;

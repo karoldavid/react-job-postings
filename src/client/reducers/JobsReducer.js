@@ -1,4 +1,4 @@
-import { FETCH_JOBS, FETCH_JOBS_SUCCESS, SELECT_JOB } from "../actions/types";
+import { FETCH_JOBS, FETCH_JOBS_SUCCESS, SELECT_JOB, DESELECT_JOB } from "../actions/types";
 
 const INITIAL_STATE = {
 	posts: [],
@@ -19,6 +19,11 @@ export default function(state = INITIAL_STATE, action) {
 			return {
 				...state,
 				selected: action.payload
+			};
+		case DESELECT_JOB:
+			return {
+				...state,
+				selected: null
 			};
 		default:
 			return state;
