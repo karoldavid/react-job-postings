@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
 	Card,
 	CardHeader,
@@ -22,6 +23,13 @@ class JobDetailPage extends Component {
 		} = this.props.post;
 		return (
 			<div style={{ marginLeft: "auto", marginRight: "auto" }}>
+				<Link to="/">
+					<FlatButton
+						label="<< Back to Jobs List Page"
+						primary
+						onClick={() => this.props.deselectJob()}
+					/>
+				</Link>
 				<Card style={cardStyle}>
 					<CardHeader
 						title="Job Detail Page"
@@ -34,7 +42,7 @@ class JobDetailPage extends Component {
 					>
 						<img
 							src={"https://lorempixel.com/800/400/technics"}
-							style={{  }}
+							style={{ height: 400 }}
 						/>
 					</CardMedia>
 

@@ -455,6 +455,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(1);
 
+var _reactRouterDom = __webpack_require__(2);
+
 var _materialUi = __webpack_require__(5);
 
 var _actions = __webpack_require__(3);
@@ -483,6 +485,8 @@ var JobDetailPage = function (_Component) {
 	_createClass(JobDetailPage, [{
 		key: "render",
 		value: function render() {
+			var _this2 = this;
+
 			var _props$post = this.props.post,
 			    company = _props$post.company,
 			    formattedLocation = _props$post.formattedLocation,
@@ -494,6 +498,17 @@ var JobDetailPage = function (_Component) {
 			return _react2.default.createElement(
 				"div",
 				{ style: { marginLeft: "auto", marginRight: "auto" } },
+				_react2.default.createElement(
+					_reactRouterDom.Link,
+					{ to: "/" },
+					_react2.default.createElement(_materialUi.FlatButton, {
+						label: "<< Back to Jobs List Page",
+						primary: true,
+						onClick: function onClick() {
+							return _this2.props.deselectJob();
+						}
+					})
+				),
 				_react2.default.createElement(
 					_materialUi.Card,
 					{ style: cardStyle },
@@ -508,7 +523,7 @@ var JobDetailPage = function (_Component) {
 						},
 						_react2.default.createElement("img", {
 							src: "https://lorempixel.com/800/400/technics",
-							style: {}
+							style: { height: 400 }
 						})
 					),
 					_react2.default.createElement(
