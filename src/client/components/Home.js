@@ -1,4 +1,6 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Home = () => {
 	return (
@@ -9,4 +11,11 @@ const Home = () => {
 	);
 };
 
-export default Home;
+const mapStateToProps = ({ jobs }) => {
+	console.log(jobs)
+	return {
+		jobs
+	}
+}
+
+export default withRouter(connect(mapStateToProps)(Home));

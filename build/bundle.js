@@ -197,6 +197,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(1);
+
+var _reactRedux = __webpack_require__(8);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Home = function Home() {
@@ -218,7 +222,22 @@ var Home = function Home() {
 	);
 };
 
-exports.default = Home;
+var mapStateToProps = function mapStateToProps(_ref) {
+	var jobs = _ref.jobs;
+
+	console.log(jobs);
+	return {
+		jobs: jobs
+	};
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(Home));
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
 
 /***/ })
 /******/ ]);
