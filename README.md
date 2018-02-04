@@ -2,6 +2,8 @@
 
 This is a​ simple mock up ​of a server rendered React web app which displays job postings.
 
+## Features
+
 There are two pages:
 
 1. The Jobs List Page Displays a list of available jobs.
