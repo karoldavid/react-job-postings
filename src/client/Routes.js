@@ -7,7 +7,7 @@ export default () => {
 	return (
 		<div>
 			<Route exact path="/" component={JobsListPage} />
-			<Route path="/jobs" component={JobDetailPage} />
+			<Route path="/job/:jobkey" component={JobDetailPage} />
 		</div>
 	);
 };

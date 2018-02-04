@@ -16,7 +16,6 @@ export default function(state = INITIAL_STATE, action) {
 		case FETCH_JOBS_SUCCESS:
 			return { ...state, posts: action.payload, loading: false };
 		case SELECT_JOB:
-			console.log(action.payload)
 			return {
 				...state,
 				selected: action.payload

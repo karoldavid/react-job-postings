@@ -1,7 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-const JobDetailPage = () => {
-	return <div>JobDetailPage</div>;
+class JobDetailPage extends Component {
+	render() {
+		const { jobtitle } = this.props.selected;
+		return <div>{jobtitle}</div>;
+	}
+}
+
+const mapStateToProps = ({ jobs: { selected } }) => {
+	console.log(selected);
+	return {
+		selected
+	};
 };
 
-export default JobDetailPage;
+export default connect(mapStateToProps)(JobDetailPage);
