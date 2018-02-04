@@ -9,18 +9,20 @@ class JobsListPage extends Component {
 	}
 
 	render() {
+		const { loading, jobs } = this.props;
 		return (
 			<div>
 				<div>Find your job here!</div>
+				{loading ? console.log("loading") : console.log("loaded")}
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = ({ jobs }) => {
-	console.log(jobs);
+const mapStateToProps = ({ jobs, loading }) => {
 	return {
-		jobs
+		jobs,
+		loading
 	};
 };
 

@@ -92,6 +92,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var FETCH_JOBS = exports.FETCH_JOBS = "FETCH_JOBS";
+var FETCH_JOBS_SUCCESS = exports.FETCH_JOBS_SUCCESS = "FETCH_JOBS_SUCCESS";
 
 /***/ }),
 /* 4 */
@@ -275,6 +276,10 @@ var JobsListPage = function (_Component) {
 	}, {
 		key: "render",
 		value: function render() {
+			var _props = this.props,
+			    loading = _props.loading,
+			    jobs = _props.jobs;
+
 			return _react2.default.createElement(
 				"div",
 				null,
@@ -282,7 +287,8 @@ var JobsListPage = function (_Component) {
 					"div",
 					null,
 					"Find your job here!"
-				)
+				),
+				loading ? console.log("loading") : console.log("loaded")
 			);
 		}
 	}]);
@@ -291,11 +297,12 @@ var JobsListPage = function (_Component) {
 }(_react.Component);
 
 var mapStateToProps = function mapStateToProps(_ref) {
-	var jobs = _ref.jobs;
+	var jobs = _ref.jobs,
+	    loading = _ref.loading;
 
-	console.log(jobs);
 	return {
-		jobs: jobs
+		jobs: jobs,
+		loading: loading
 	};
 };
 
@@ -340,11 +347,14 @@ var _types = __webpack_require__(3);
 
 var fetchJobs = exports.fetchJobs = function fetchJobs() {
 	return function (dispatch) {
+		dispatch({
+			type: _types.FETCH_JOBS
+		});
 		fetch("data/jobs.json").then(function (response) {
 			return response.json();
 		}).then(function (data) {
 			dispatch({
-				type: _types.FETCH_JOBS,
+				type: _types.FETCH_JOBS_SUCCESS,
 				payload: data
 			});
 		}).catch(function (err) {
@@ -456,7 +466,10 @@ exports.default = function () {
 
 	switch (action.type) {
 		case _types.FETCH_JOBS:
-			return _extends({}, state, { posts: action.payload });
+			return _extends({}, state, { loading: true
+			});
+		case _types.FETCH_JOBS_SUCCESS:
+			return _extends({}, state, { posts: action.payload, loading: false });
 		default:
 			return state;
 	}
