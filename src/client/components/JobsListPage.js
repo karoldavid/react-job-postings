@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import { Paper, List, ListItem, Divider } from "material-ui";
 
 class JobsListPage extends Component {
 	componentDidMount() {
@@ -11,19 +11,16 @@ class JobsListPage extends Component {
 	render() {
 		const { loading, jobs } = this.props;
 		return (
-			<div>
-				<div>Find your job here!</div>
-				{loading ? console.log("loading") : console.log("loaded")}
-			</div>
+			<p>hello</p>
 		);
 	}
 }
 
 const mapStateToProps = ({ jobs, loading }) => {
+	console.log(jobs)
 	return {
 		jobs,
 		loading
 	};
 };
-
-export default withRouter(connect(mapStateToProps, actions)(JobsListPage));
+export default connect(mapStateToProps, actions)(JobsListPage);

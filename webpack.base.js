@@ -6,6 +6,7 @@ module.exports = {
 				loader: "babel-loader",
 				exclude: /node_modules/,
 				options: {
+					plugins: ["transform-class-properties"],
 					presets: [
 						"react",
 						"stage-0",
