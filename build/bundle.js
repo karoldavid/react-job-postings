@@ -96,7 +96,7 @@ var _renderer = __webpack_require__(5);
 
 var _renderer2 = _interopRequireDefault(_renderer);
 
-var _createStore = __webpack_require__(10);
+var _createStore = __webpack_require__(11);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
@@ -138,6 +138,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(6);
 
+var _reactRedux = __webpack_require__(9);
+
 var _reactRouterDom = __webpack_require__(1);
 
 var _Routes = __webpack_require__(7);
@@ -146,11 +148,15 @@ var _Routes2 = _interopRequireDefault(_Routes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (req) {
+exports.default = function (req, store) {
 	var content = (0, _server.renderToString)(_react2.default.createElement(
-		_reactRouterDom.StaticRouter,
-		{ location: req.path, context: {} },
-		_react2.default.createElement(_Routes2.default, null)
+		_reactRedux.Provider,
+		{ store: store },
+		_react2.default.createElement(
+			_reactRouterDom.StaticRouter,
+			{ location: req.path, context: {} },
+			_react2.default.createElement(_Routes2.default, null)
+		)
 	));
 
 	return "\n\t\t<html>\n\t\t<head></head>\n\t\t<body>\n\t\t\t<div id=\"root\">" + content + "</div>\n\t\t\t<script src=\"bundle.js\"></script>\n\t\t\t</div>\n\t\t</body>\n\t</html>\n\t";
@@ -179,11 +185,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(1);
 
-var _JobsListPage = __webpack_require__(14);
+var _JobsListPage = __webpack_require__(8);
 
 var _JobsListPage2 = _interopRequireDefault(_JobsListPage);
 
-var _JobDetailPage = __webpack_require__(15);
+var _JobDetailPage = __webpack_require__(10);
 
 var _JobDetailPage2 = _interopRequireDefault(_JobDetailPage);
 
@@ -199,14 +205,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 8 */,
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-redux");
-
-/***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -216,107 +215,50 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _redux = __webpack_require__(2);
-
-var _reduxThunk = __webpack_require__(11);
-
-var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-var _reducers = __webpack_require__(12);
-
-var _reducers2 = _interopRequireDefault(_reducers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-	var store = (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
-	return store;
-};
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = require("redux-thunk");
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _redux = __webpack_require__(2);
-
-var _JobsReducer = __webpack_require__(13);
-
-var _JobsReducer2 = _interopRequireDefault(_JobsReducer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = (0, _redux.combineReducers)({
-	jobs: _JobsReducer2.default
-});
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-exports.default = function () {
-	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
-	var action = arguments[1];
-
-	switch (action.type) {
-		default:
-			return state;
-	}
-};
-
-var INITIAL_STATE = {
-	posts: []
-};
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(1);
+
 var _reactRedux = __webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var JobsListPage = function JobsListPage() {
-	return _react2.default.createElement(
-		"div",
-		null,
-		_react2.default.createElement(
-			"div",
-			null,
-			"Find your job here!"
-		)
-	);
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var JobsListPage = function (_Component) {
+	_inherits(JobsListPage, _Component);
+
+	function JobsListPage() {
+		_classCallCheck(this, JobsListPage);
+
+		return _possibleConstructorReturn(this, (JobsListPage.__proto__ || Object.getPrototypeOf(JobsListPage)).apply(this, arguments));
+	}
+
+	_createClass(JobsListPage, [{
+		key: "render",
+		value: function render() {
+			return _react2.default.createElement(
+				"div",
+				null,
+				_react2.default.createElement(
+					"div",
+					null,
+					"Find your job here!"
+				)
+			);
+		}
+	}]);
+
+	return JobsListPage;
+}(_react.Component);
 
 var mapStateToProps = function mapStateToProps(_ref) {
 	var jobs = _ref.jobs;
@@ -327,11 +269,16 @@ var mapStateToProps = function mapStateToProps(_ref) {
 	};
 };
 
-//export default connect(mapStateToProps)(Home);
-exports.default = JobsListPage;
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(JobsListPage));
 
 /***/ }),
-/* 15 */
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -356,6 +303,88 @@ var JobDetailPage = function JobDetailPage() {
 };
 
 exports.default = JobDetailPage;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _redux = __webpack_require__(2);
+
+var _reduxThunk = __webpack_require__(12);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+var _reducers = __webpack_require__(13);
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+	var store = (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+	return store;
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-thunk");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _redux = __webpack_require__(2);
+
+var _JobsReducer = __webpack_require__(14);
+
+var _JobsReducer2 = _interopRequireDefault(_JobsReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+	jobs: _JobsReducer2.default
+});
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+exports.default = function () {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+	var action = arguments[1];
+
+	switch (action.type) {
+		default:
+			return state;
+	}
+};
+
+var INITIAL_STATE = {
+	posts: []
+};
 
 /***/ })
 /******/ ]);

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-const JobsListPage = () => {
-	return (
-		<div>
-			<div>Find your job here!</div>
-		</div>
-	);
-};
+class JobsListPage extends Component {
+	render() {
+		return (
+			<div>
+				<div>Find your job here!</div>
+			</div>
+		);
+	}
+}
 
 const mapStateToProps = ({ jobs }) => {
 	console.log(jobs);
@@ -16,5 +19,4 @@ const mapStateToProps = ({ jobs }) => {
 	};
 };
 
-//export default connect(mapStateToProps)(Home);
-export default JobsListPage;
+export default withRouter(connect(mapStateToProps)(JobsListPage));
