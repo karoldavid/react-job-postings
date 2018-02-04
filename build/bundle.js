@@ -218,7 +218,7 @@ exports.default = function (req, store) {
 		)
 	));
 
-	return "\n\t\t<html>\n\t\t<head></head>\n\t\t<body>\n\t\t\t<div id=\"root\">" + content + "</div>\n\t\t\t<script src=\"bundle.js\"></script>\n\t\t\t</div>\n\t\t</body>\n\t</html>\n\t";
+	return "\n\t\t<html>\n\t\t<head> <title>React Job Posts</title></head>\n\t\t<body>\n\t\t\t<div id=\"root\">" + content + "</div>\n\t\t\t<script src=\"bundle.js\"></script>\n\t\t\t</div>\n\t\t</body>\n\t</html>\n\t";
 };
 
 /***/ }),
