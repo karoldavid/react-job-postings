@@ -225,6 +225,12 @@ var _reactRouterDom = __webpack_require__(1);
 
 var _reactRedux = __webpack_require__(9);
 
+var _actions = __webpack_require__(16);
+
+var actions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -243,6 +249,11 @@ var JobsListPage = function (_Component) {
 	}
 
 	_createClass(JobsListPage, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			this.props.fetchJobs();
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			return _react2.default.createElement(
@@ -269,7 +280,7 @@ var mapStateToProps = function mapStateToProps(_ref) {
 	};
 };
 
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(JobsListPage));
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, actions)(JobsListPage));
 
 /***/ }),
 /* 9 */
@@ -377,13 +388,74 @@ exports.default = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
+		case _types.FETCH_JOBS:
+			console.log(action.type);
+			return state;
 		default:
 			return state;
 	}
 };
 
+var _types = __webpack_require__(15);
+
 var INITIAL_STATE = {
-	posts: []
+	posts: [],
+	loading: false
+};
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var FETCH_JOBS = exports.FETCH_JOBS = "FETCH_JOBS";
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _JobActions = __webpack_require__(17);
+
+Object.keys(_JobActions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _JobActions[key];
+    }
+  });
+});
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.fetchJobs = undefined;
+
+var _types = __webpack_require__(15);
+
+var fetchJobs = exports.fetchJobs = function fetchJobs() {
+	return {
+		type: _types.FETCH_JOBS
+	};
 };
 
 /***/ })
