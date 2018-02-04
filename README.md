@@ -10,7 +10,7 @@ There are two pages:
 
 2. The Job Detail Page Displays all the information about an individual job.
 
-![Image of Job Detail Page](static/img/jobd-etail-page.jpg)
+![Image of Job Detail Page](static/img/job-detail-page.jpg)
 
 ## Getting Started
 
