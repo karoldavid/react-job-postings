@@ -14,7 +14,7 @@ class JobsListPage extends Component {
 			const { jobkey, jobtitle } = post;
 			return (
 				<div key={jobkey}>
-					<ListItem onClick={() => console.log(post)}>
+					<ListItem onClick={() => this.props.selectJob(post)}>
 						{`${jobtitle} `}
 					</ListItem>
 

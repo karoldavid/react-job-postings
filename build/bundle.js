@@ -281,7 +281,7 @@ var JobsListPage = function (_Component) {
 					_react2.default.createElement(
 						_materialUi.ListItem,
 						{ onClick: function onClick() {
-								return console.log(post);
+								return _this.props.selectJob(post);
 							} },
 						jobtitle + " "
 					),
@@ -446,6 +446,11 @@ exports.default = function () {
 			});
 		case _types.FETCH_JOBS_SUCCESS:
 			return _extends({}, state, { posts: action.payload, loading: false });
+		case _types.SELECT_JOB:
+			console.log(action.payload);
+			return _extends({}, state, {
+				selected: action.payload
+			});
 		default:
 			return state;
 	}
@@ -455,7 +460,8 @@ var _types = __webpack_require__(16);
 
 var INITIAL_STATE = {
 	posts: [],
-	loading: true // should be false, temporary workaround
+	loading: true, // should be false, temporary workaround
+	selected: null
 };
 
 /***/ }),
@@ -470,6 +476,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var FETCH_JOBS = exports.FETCH_JOBS = "FETCH_JOBS";
 var FETCH_JOBS_SUCCESS = exports.FETCH_JOBS_SUCCESS = "FETCH_JOBS_SUCCESS";
+var SELECT_JOB = exports.SELECT_JOB = "SELECT_JOB";
 
 /***/ }),
 /* 17 */
@@ -504,7 +511,7 @@ Object.keys(_JobActions).forEach(function (key) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.fetchJobs = undefined;
+exports.selectJob = exports.fetchJobs = undefined;
 
 var _isomorphicFetch = __webpack_require__(19);
 
@@ -529,6 +536,13 @@ var fetchJobs = exports.fetchJobs = function fetchJobs() {
 		}).catch(function (err) {
 			return console.log(err);
 		});
+	};
+};
+
+var selectJob = exports.selectJob = function selectJob(job) {
+	return {
+		type: _types.SELECT_JOB,
+		payload: job
 	};
 };
 

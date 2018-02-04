@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { FETCH_JOBS, FETCH_JOBS_SUCCESS } from "./types";
+import { FETCH_JOBS, FETCH_JOBS_SUCCESS, SELECT_JOB } from "./types";
 
 export const fetchJobs = () => {
 	return dispatch => {
@@ -15,5 +15,12 @@ export const fetchJobs = () => {
 				});
 			})
 			.catch(err => console.log(err));
+	};
+};
+
+export const selectJob = job => {
+	return {
+		type: SELECT_JOB,
+		payload: job
 	};
 };
